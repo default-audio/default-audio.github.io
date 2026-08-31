@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://default-audio.github.io/sitemap.xml
