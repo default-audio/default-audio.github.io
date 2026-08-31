@@ -2,10 +2,9 @@
   color-scheme: light dark;
   --paper: #f6f6f6;
   --ink: #050505;
+  --screen: #8a8a8a;
   --muted-light: rgba(246, 246, 246, 0.58);
   --muted-dark: rgba(5, 5, 5, 0.58);
-  --line-light: rgba(246, 246, 246, 0.2);
-  --line-dark: rgba(5, 5, 5, 0.2);
   --header-height: 58px;
   --page-gutter: clamp(14px, 2vw, 28px);
   --mono: "SFMono-Regular", "Cascadia Mono", "Roboto Mono", "Liberation Mono", Menlo,
@@ -19,6 +18,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 1px);
 }
 
 body {
@@ -62,7 +62,7 @@ img {
   inset: 0 0 auto;
   height: var(--header-height);
   display: grid;
-  grid-template-columns: minmax(145px, 1fr) 2fr minmax(145px, 1fr);
+  grid-template-columns: minmax(145px, 1fr) 3fr;
   align-items: stretch;
   background: var(--paper);
   color: var(--ink);
@@ -92,26 +92,10 @@ img {
 }
 
 .header-note {
-  justify-content: center;
+  justify-content: flex-end;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.14em;
-}
-
-.header-link {
-  justify-content: space-between;
-  border-left: 2px solid var(--ink);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  transition: background-color 120ms linear, color 120ms linear;
-}
-
-.header-link:hover,
-.header-link:focus-visible {
-  background: var(--ink);
-  color: var(--paper);
-  outline: 0;
 }
 
 .hero {
@@ -229,7 +213,6 @@ img {
 }
 
 .plugin {
-  min-height: 100svh;
   border-bottom: 2px solid currentColor;
 }
 
@@ -244,7 +227,7 @@ img {
 }
 
 .plugin-heading {
-  min-height: clamp(150px, 23vw, 310px);
+  min-height: clamp(86px, 8.5vw, 118px);
   display: grid;
   grid-template-columns: minmax(90px, 0.4fr) minmax(0, 3fr) minmax(130px, 0.5fr);
   border-bottom: 2px solid currentColor;
@@ -252,7 +235,7 @@ img {
 
 .plugin-heading > * {
   margin: 0;
-  padding: var(--page-gutter);
+  padding: clamp(10px, 1.2vw, 18px);
 }
 
 .plugin-number {
@@ -265,15 +248,15 @@ img {
 .plugin-heading h2 {
   min-width: 0;
   align-self: end;
-  font-size: clamp(44px, 8.8vw, 140px);
-  line-height: 0.8;
+  font-size: clamp(42px, 6.2vw, 96px);
+  line-height: 0.88;
   letter-spacing: -0.09em;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
 }
 
 .repo-link {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   border-left: 2px solid currentColor;
   font-size: 10px;
@@ -296,36 +279,37 @@ img {
 
 .plugin-body {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(340px, 0.85fr);
-  min-height: 670px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(360px, 1fr);
 }
 
 .plugin-visual {
   margin: 0;
-  padding: clamp(20px, 4vw, 64px) var(--page-gutter) 22px;
+  padding: 10px var(--page-gutter) 8px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   border-right: 2px solid currentColor;
 }
 
-.plugin-visual img {
-  width: 100%;
+.screenshot-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(8px, 1vw, 14px);
+  background: var(--screen);
+}
+
+.screenshot-frame img {
+  width: auto;
+  max-width: 100%;
+  max-height: 440px;
   height: auto;
   object-fit: contain;
   image-rendering: auto;
 }
 
-.plugin-dark .plugin-visual img {
-  border: 1px solid var(--line-light);
-}
-
-.plugin-light .plugin-visual img {
-  border: 1px solid var(--line-dark);
-}
-
 .plugin-visual figcaption {
-  margin-top: 14px;
+  margin-top: 8px;
   font-size: 9px;
   line-height: 1.4;
   letter-spacing: 0.12em;
@@ -339,12 +323,11 @@ img {
 
 .plugin-lead {
   margin: 0;
-  min-height: 200px;
-  padding: var(--page-gutter);
+  padding: clamp(18px, 2vw, 28px) var(--page-gutter);
   display: flex;
   align-items: flex-end;
   border-bottom: 2px solid currentColor;
-  font-size: clamp(17px, 2vw, 26px);
+  font-size: clamp(16px, 1.6vw, 22px);
   line-height: 1.2;
   letter-spacing: -0.045em;
 }
@@ -356,8 +339,8 @@ img {
 }
 
 .feature-grid > div {
-  min-height: 126px;
-  padding: 16px;
+  min-height: 102px;
+  padding: 14px;
   border-bottom: 1px solid currentColor;
 }
 
@@ -366,31 +349,22 @@ img {
 }
 
 .feature-grid dt {
-  font-size: clamp(26px, 3vw, 48px);
+  font-size: clamp(22px, 2.5vw, 38px);
   line-height: 1;
   font-weight: 800;
   letter-spacing: -0.07em;
 }
 
 .feature-grid dd {
-  margin: 18px 0 0;
-  font-size: 8px;
+  margin: 12px 0 0;
+  font-size: clamp(10px, 0.85vw, 12px);
   line-height: 1.35;
   letter-spacing: 0.1em;
   opacity: 0.62;
 }
 
-.workflow-note {
-  flex: 1;
-  margin: 0;
-  padding: var(--page-gutter);
-  font-size: 11px;
-  line-height: 1.55;
-  opacity: 0.7;
-}
-
 .release-link {
-  min-height: 82px;
+  min-height: 66px;
   padding: 0 var(--page-gutter);
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -526,13 +500,13 @@ img {
   }
 
   .plugin-visual {
-    min-height: 560px;
+    min-height: 0;
     border-right: 0;
     border-bottom: 2px solid currentColor;
   }
 
   .plugin-information {
-    min-height: 620px;
+    min-height: 0;
   }
 }
 
@@ -547,15 +521,14 @@ img {
   }
 
   .header-note {
-    display: none;
+    justify-content: flex-end;
+    border-left: 2px solid var(--ink);
+    font-size: 7px;
+    letter-spacing: 0.08em;
   }
 
   .wordmark {
     border-right: 0;
-  }
-
-  .header-link {
-    border-left: 2px solid var(--ink);
   }
 
   .hero {
@@ -578,9 +551,9 @@ img {
   }
 
   .plugin-heading {
-    min-height: 178px;
+    min-height: 128px;
     grid-template-columns: 48px minmax(0, 1fr);
-    grid-template-rows: 1fr 44px;
+    grid-template-rows: 1fr 34px;
   }
 
   .plugin-number {
@@ -588,8 +561,8 @@ img {
   }
 
   .plugin-heading h2 {
-    padding-block: 24px;
-    font-size: clamp(42px, 14.7vw, 72px);
+    padding-block: 10px;
+    font-size: clamp(26px, 7.4vw, 44px);
   }
 
   .repo-link {
@@ -600,20 +573,11 @@ img {
   }
 
   .plugin-visual {
-    min-height: 360px;
-    padding-block: 32px 18px;
-  }
-
-  .plugin-lead {
-    min-height: 175px;
+    padding-block: 8px 6px;
   }
 
   .feature-grid > div {
-    min-height: 116px;
-  }
-
-  .workflow-note {
-    min-height: 180px;
+    min-height: 98px;
   }
 
   .release-link {
