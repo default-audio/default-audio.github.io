@@ -364,9 +364,8 @@ img {
   opacity: 0.8;
 }
 
-.release-link,
+.download-link,
 .source-link {
-  flex: 1 1 0;
   min-height: 72px;
   padding: 0 14px;
   font-size: var(--detail-label-size);
@@ -375,16 +374,22 @@ img {
   transition: background-color 120ms linear, color 120ms linear;
 }
 
-.release-link {
+.download-links {
+  flex: 1 1 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  gap: 22px;
-  align-items: center;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.release-link strong {
-  font-size: 18px;
-  letter-spacing: -0.05em;
+.download-link {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.download-link:not(:last-child) {
+  border-right: 2px solid currentColor;
 }
 
 .source-link {
@@ -394,16 +399,16 @@ img {
   border-top: 2px solid currentColor;
 }
 
-.plugin-dark .release-link:hover,
-.plugin-dark .release-link:focus-visible,
+.plugin-dark .download-link:hover,
+.plugin-dark .download-link:focus-visible,
 .plugin-dark .source-link:hover,
 .plugin-dark .source-link:focus-visible {
   background: var(--paper);
   color: var(--ink);
 }
 
-.plugin-light .release-link:hover,
-.plugin-light .release-link:focus-visible,
+.plugin-light .download-link:hover,
+.plugin-light .download-link:focus-visible,
 .plugin-light .source-link:hover,
 .plugin-light .source-link:focus-visible {
   background: var(--ink);
@@ -618,7 +623,7 @@ img {
 
   .plugin-heading > *,
   .feature-grid > div,
-  .release-link,
+  .download-link,
   .source-link {
     min-width: 0;
   }
@@ -635,9 +640,11 @@ img {
     overflow-wrap: anywhere;
   }
 
-  .release-link {
+  .download-link {
     min-height: 74px;
-    gap: 12px;
+    padding-inline: 8px;
+    font-size: 9px;
+    letter-spacing: 0.06em;
   }
 
   .source-link {
